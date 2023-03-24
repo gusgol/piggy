@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -30,7 +31,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.emoji2.emojipicker.EmojiPickerView
-import me.goldhardt.piggy.ui.categories.CategoryColor
+import androidx.hilt.navigation.compose.hiltViewModel
+import me.goldhardt.piggy.data.local.database.CategoryColor
 import me.goldhardt.piggy.ui.categories.ColorPicker
 import me.goldhardt.piggy.ui.components.POutlinedBox
 import me.goldhardt.piggy.ui.components.POutlinedTextField
@@ -41,7 +43,10 @@ internal enum class CreateCategoryStep {
 }
 
 @Composable
-fun CreateCategoryScreen() {
+fun CreateCategoryScreen(
+    viewModel: CreateCategoryViewModel = hiltViewModel(),
+    onCategoryCreated: () -> Unit,
+) {
     var currentStep: CreateCategoryStep by remember { mutableStateOf(CreateCategoryStep.Form) }
     var categoryName by remember { mutableStateOf("") }
     var emoji: String by remember { mutableStateOf("\uD83D\uDCB0") }
@@ -58,6 +63,10 @@ fun CreateCategoryScreen() {
                 },
                 onColorFieldClicked = {
                     currentStep = CreateCategoryStep.ColorPicker
+                },
+                onSubmit = { name, emoji, color ->
+                    viewModel.add(name, emoji, color)
+                    onCategoryCreated()
                 }
             )
         }
@@ -87,9 +96,10 @@ private fun CreateCategoryForm(
     color: CategoryColor,
     onCategoryNameChanged: (String) -> Unit,
     onEmojiFieldClicked: () -> Unit,
-    onColorFieldClicked: () -> Unit
+    onColorFieldClicked: () -> Unit,
+    onSubmit: (String, String, CategoryColor) -> Unit,
 ) {
-
+    val isFormValid = categoryName.isNotBlank()
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -104,6 +114,7 @@ private fun CreateCategoryForm(
             onValueChange = { onCategoryNameChanged(it) },
             label = "Name",
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+            isError = !isFormValid,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)
@@ -135,11 +146,11 @@ private fun CreateCategoryForm(
             ) {
                 Box(
                     modifier =
-                        Modifier
-                            .fillMaxSize()
-                            .padding(8.dp)
-                            .clip(RoundedCornerShape(4.dp))
-                            .background(Color(android.graphics.Color.parseColor(color.hexCode)))
+                    Modifier
+                        .fillMaxSize()
+                        .padding(8.dp)
+                        .clip(RoundedCornerShape(4.dp))
+                        .background(Color(android.graphics.Color.parseColor(color.hexCode)))
                 ) {
                     Text(
                         text = "Color",
@@ -150,6 +161,15 @@ private fun CreateCategoryForm(
                     )
                 }
             }
+        }
+        Button(
+            modifier = Modifier.width(96.dp),
+            enabled = isFormValid,
+            onClick = {
+                onSubmit(categoryName, emoji, color)
+            }
+        ) {
+            Text("Save")
         }
     }
 }
@@ -175,6 +195,6 @@ fun EmojiPicker(
 @Composable
 private fun DefaultPreview() {
     PiggyTheme {
-        CreateCategoryScreen()
+        CreateCategoryScreen {}
     }
 }

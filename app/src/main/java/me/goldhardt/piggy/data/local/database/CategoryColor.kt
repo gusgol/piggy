@@ -1,4 +1,4 @@
-package me.goldhardt.piggy.ui.categories
+package me.goldhardt.piggy.data.local.database
 
 enum class CategoryColor(val hexCode: String) {
     BabyPink("#F8BBD0"),

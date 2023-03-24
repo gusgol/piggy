@@ -7,12 +7,11 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import me.goldhardt.piggy.ui.PiggyScreens.CATEGORIES_SCREEN
 import me.goldhardt.piggy.ui.PiggyScreens.CREATE_CATEGORY_SCREEN
 import me.goldhardt.piggy.ui.PiggyScreens.CREATE_EXPENSE_SCREEN
 import me.goldhardt.piggy.ui.PiggyScreens.EXPENSES_SCREEN
-import me.goldhardt.piggy.ui.categories.CategoriesScreen
+import me.goldhardt.piggy.ui.categories.list.CategoriesScreen
 import me.goldhardt.piggy.ui.categories.create.CreateCategoryScreen
 import me.goldhardt.piggy.ui.expenses.ExpensesScreen
 import me.goldhardt.piggy.ui.expenses.create.CreateExpenseScreen
@@ -42,7 +41,9 @@ fun MainNavigation(
             CategoriesScreen()
         }
         composable(CREATE_CATEGORY_SCREEN) {
-            CreateCategoryScreen()
+            CreateCategoryScreen {
+                navController.navigate(CATEGORIES_SCREEN)
+            }
         }
     }
 }

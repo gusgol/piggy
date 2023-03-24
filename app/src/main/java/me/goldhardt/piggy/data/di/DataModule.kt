@@ -6,6 +6,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
+import me.goldhardt.piggy.data.CategoryRepository
+import me.goldhardt.piggy.data.DefaultCategoryRepository
 import me.goldhardt.piggy.data.ExpenseRepository
 import me.goldhardt.piggy.data.DefaultExpenseRepository
 import javax.inject.Inject
@@ -20,6 +22,11 @@ interface DataModule {
     fun bindsExpenseRepository(
         expenseRepository: DefaultExpenseRepository
     ): ExpenseRepository
+
+    @Binds
+    fun bindsCategoryRepository(
+        categoryRepository: DefaultCategoryRepository
+    ): CategoryRepository
 }
 
 class FakeExpenseRepository @Inject constructor() : ExpenseRepository {
