@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="categories_emojis">
+        <item>🍔</item><!-- Food/Dining -->
+        <item>🛍️</item><!-- Shopping -->
+        <item>🚗</item><!-- Transportation -->
+        <item>🏠</item><!-- Rent/Housing -->
+        <item>📱</item><!-- Phone/Internet -->
+        <item>💊</item><!-- Health/Medical -->
+        <item>💰</item><!-- Money/Cash -->
+        <item>🎁</item><!-- Gifts/Donations -->
+        <item>🚀</item><!-- Travel -->
+        <item>📚</item><!-- Education -->
+        <item>🎮</item><!-- Entertainment -->
+        <item>🚬</item><!-- Smoking -->
+        <item>🍷</item><!-- Alcohol/Drinks -->
+        <item>🎓</item><!-- Graduation -->
+        <item>🎉</item><!-- Party/Events -->
+        <item>💄</item><!-- Beauty/Personal Care -->
+        <item>🐾</item><!-- Pets -->
+        <item>🎭</item><!-- Theater/Arts -->
+        <item>🏥</item><!-- Hospital/Doctor -->
+        <item>🎤</item><!-- Music -->
+        <item>🎬</item><!-- Movies/Streaming -->
+        <item>🚿</item><!-- Utilities -->
+        <item>🎸</item><!-- Musical Instruments -->
+        <item>📷</item><!-- Photography -->
+        <item>🛹</item><!-- Sports/Recreation -->
+        <item>🌳</item><!-- Gardening -->
+        <item>🚴</item><!-- Biking -->
+        <item>🚣</item><!-- Boating -->
+        <item>🏄</item><!-- Surfing -->
+        <item>🏕️</item><!-- Camping -->
+        <item>🚁</item><!-- Helicopter -->
+        <item>🚂</item><!-- Train -->
+        <item>🛩️</item><!-- Airplane -->
+        <item>🛀</item><!-- Spa -->
+        <item>📺</item><!-- TV/Electronics -->
+        <item>🚲</item><!-- Bicycle -->
+        <item>🏈</item><!-- Sports/Football -->
+        <item>🎳</item><!-- Bowling -->
+        <item>🎰</item><!-- Gambling -->
+        <item>🎁</item><!-- Holidays -->
+    </string-array>
+</resources>

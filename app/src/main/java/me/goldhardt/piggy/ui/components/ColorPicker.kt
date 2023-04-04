@@ -1,4 +1,4 @@
-package me.goldhardt.piggy.ui.categories
+package me.goldhardt.piggy.ui.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable

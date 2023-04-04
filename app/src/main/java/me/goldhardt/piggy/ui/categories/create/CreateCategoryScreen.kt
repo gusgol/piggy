@@ -29,11 +29,10 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.viewinterop.AndroidView
-import androidx.emoji2.emojipicker.EmojiPickerView
 import androidx.hilt.navigation.compose.hiltViewModel
 import me.goldhardt.piggy.data.local.database.CategoryColor
-import me.goldhardt.piggy.ui.categories.ColorPicker
+import me.goldhardt.piggy.ui.components.ColorPicker
+import me.goldhardt.piggy.ui.components.EmojiPicker
 import me.goldhardt.piggy.ui.components.POutlinedBox
 import me.goldhardt.piggy.ui.components.POutlinedTextField
 import me.goldhardt.piggy.ui.theme.PiggyTheme
@@ -172,23 +171,6 @@ private fun CreateCategoryForm(
             Text("Save")
         }
     }
-}
-
-@Composable
-fun EmojiPicker(
-    onEmojiSelected: (String) -> Unit
-) {
-    AndroidView(
-        modifier = Modifier
-            .fillMaxSize(),
-        factory = { context ->
-            EmojiPickerView(context).apply {
-                setOnEmojiPickedListener { selected ->
-                    onEmojiSelected(selected.emoji)
-                }
-            }
-        }
-    )
 }
 
 @Preview(showBackground = true)
